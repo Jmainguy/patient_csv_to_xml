@@ -9,7 +9,9 @@ type Service_Line struct {
     SrvCharges string `xml:"SrvCharges,omitempty"`
     SrvFromDate string `xml:"SrvFromDate,omitempty"`
     SrvPlace string `xml:"SrvPlace,omitempty"`
+    SrvEMG  string  `xml:"SrvEMG,omitempty"`
     SrvProcedureCode string `xml:"SrvProcedureCode,omitempty"`
+    SrvModifier1    string  `xml:"SrvModifier1,omitempty"`
     SrvToDate string `xml:"SrvToDate,omitempty"`
     SrvUnits string `xml:"SrvUnits,omitempty"`
 }
@@ -45,6 +47,7 @@ type Patient struct {
     XMLName xml.Name `xml:"Patient"`
     PatFirstName string `xml:"PatFirstName"`
     PatLastName string `xml:"PatLastName"`
+    PatAccountNo string `xml:"PatAccountNo,omitempty"`
     PatAddress string `xml:"PatAddress,omitempty"`
     PatBirthDate string `xml:"PatBirthDate,omitempty"`
     PatCity string  `xml:"PatCity,omitempty"`
@@ -52,6 +55,7 @@ type Patient struct {
     PatSigOnFile string `xml:"PatSigOnFile,omitempty"`
     PatState string `xml:"PatState,omitempty"`
     PatZip  string `xml:"PatZip,omitempty"`
+    PatClassification   string `xml:"PatClassification,omitempty"`
     Patient_Insured Patient_Insured `xml:"Patient_Insured,omitempty"`
     Claim Claim `xml:"Claim"`
 }
