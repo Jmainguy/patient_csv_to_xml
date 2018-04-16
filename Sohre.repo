@@ -1,0 +1,4 @@
+[sohre]
+name=Sohre-$releasever
+gpgcheck=0
+baseurl=https://pulp.soh.re/pulp/repos/sohre/el$releasever/
