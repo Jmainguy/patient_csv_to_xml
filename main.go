@@ -2,17 +2,12 @@ package main
 
 import (
     "encoding/csv"
-    "io"
     "net/http"
     "mime/multipart"
     "bytes"
     "fmt"
     "encoding/xml"
 )
-
-func hello(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "Hello world!")
-}
 
 func convertCsvToXml(f multipart.File) (buffer *bytes.Buffer){
     // Root of our xml doc
