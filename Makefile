@@ -7,3 +7,5 @@ rpm:
 	@cp patient_csv_to_xml.spec ~/Github/docker_rpmbuild/rpmbuild/SPECS/patient_csv_to_xml.spec
 	@cd ~/Github/docker_rpmbuild/; ./run.sh centos7 patient_csv_to_xml
 	@ls -ltrh ~/Github/docker_rpmbuild/rpmbuild/RPMS/x86_64/patient_csv_to_xml*
+docker:
+	@docker build -t='patient_csv_to_xml' .
