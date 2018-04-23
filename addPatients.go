@@ -6,7 +6,7 @@ import (
 )
 
 
-func addPatient(v *Import, line []string){
+func addPatient(v *Import, line []string, patClass string){
         patFullName := strings.Split(line[9], ",")
         fullPatBirthDate := ""
         fullSrvFromDate := ""
@@ -56,7 +56,7 @@ func addPatient(v *Import, line []string){
             PatSigOnFile: "1",
             PatState: rm_lead_space(line[23]),
             PatZip: rm_lead_space(line[26]),
-            PatClassification: "Affinity Health Services- Smithfield",
+            PatClassification: patClass,
             Patient_Insured: Patient_Insured{
                 InsAddress: rm_lead_space(line[21]),
                 InsBirthDate: fullInsBirthDate,

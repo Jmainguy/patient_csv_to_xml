@@ -9,7 +9,7 @@ import (
     "encoding/xml"
 )
 
-func convertCsvToXml(f multipart.File) (buffer *bytes.Buffer){
+func convertCsvToXml(f multipart.File, patClass string) (buffer *bytes.Buffer){
     // Root of our xml doc
     v := &Import{}
 
@@ -21,7 +21,7 @@ func convertCsvToXml(f multipart.File) (buffer *bytes.Buffer){
 
     // Loop through CSV lines & turn into object
     for _, line := range lines {
-        addPatient(v, line)
+        addPatient(v, line, patClass)
     }
 
     var buf bytes.Buffer

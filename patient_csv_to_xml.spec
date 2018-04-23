@@ -1,8 +1,8 @@
 %define _unpackaged_files_terminate_build 0
 %define  debug_package %{nil}
 Name:	patient_csv_to_xml
-Version: 0.1
-Release: 2%{?dist}
+Version: 0.2
+Release: 1%{?dist}
 Summary: A golang http server to convert generations csv to ez claim xml
 
 License: GPLv2
@@ -38,6 +38,9 @@ exit 0
 chown -R patient_csv_to_xml:patient_csv_to_xml /opt/patient_csv_to_xml
 
 %changelog
+* Mon Apr 23 2018 Jonathan Mainguy <jon@soh.re> - 0.2-1
+- Added patClass
+
 * Mon Apr 16 2018 Jonathan Mainguy <jon@soh.re> - 0.1-2
 - Fixed url
 

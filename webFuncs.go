@@ -27,7 +27,9 @@ func upload(w http.ResponseWriter, r *http.Request) {
                fmt.Println(err)
                return
            }
-           buffer := convertCsvToXml(file)
+           patClass := r.PostFormValue("patClass")
+           fmt.Printf("PatClass is %s\n", patClass)
+           buffer := convertCsvToXml(file, patClass)
 
            w.Header().Set("Content-Disposition", "attachment; filename=patient.xml")
            w.Header().Set("Content-Type", r.Header.Get("Content-Type"))
