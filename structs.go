@@ -22,6 +22,13 @@ type Claim_Insured struct {
     ClaInsPriorAuthorizationNumber string `xml:"ClaInsPriorAuthorizationNumber,omitempty"`
 }
 
+type Physician struct {
+    XMLName xml.Name `xml:"Physician"`
+    PhyName string `xml:"PhyName,omitempty"`
+    PhyNPI string `xml:"PhyNPI,omitempty"`
+    PhyType string `xml:"PhyType,omitempty"`
+}
+
 type Claim struct {
     XMLName xml.Name `xml:"Claim"`
     ClaBillDate string `xml:"ClaBillDate,omitempty"`
@@ -57,8 +64,10 @@ type Patient struct {
     PatSigOnFile string `xml:"PatSigOnFile,omitempty"`
     PatState string `xml:"PatState,omitempty"`
     PatZip  string `xml:"PatZip,omitempty"`
+    PatSex string `xml:"PatSex,omitempty"`
     PatClassification   string `xml:"PatClassification,omitempty"`
     Patient_Insured Patient_Insured `xml:"Patient_Insured,omitempty"`
+    Physician Physician `xml:"Physician"`
     Claim Claim `xml:"Claim"`
 }
 

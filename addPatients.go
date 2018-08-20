@@ -17,6 +17,7 @@ func addPatient(v *Import, line []string, patClass string){
         formatedSrvCharges := ""
         fullPatPhoneNo := ""
         fullInsPhone := ""
+        patSex := ""
         if line[10] != "" {
             fullPatBirthDate = formatBirthDate(line[10],line[11],line[12])
         }
@@ -45,6 +46,11 @@ func addPatient(v *Import, line []string, patClass string){
         if line[30] != "" {
             fullInsPhone = formatPhoneNumber(rm_lead_space(line[30]), rm_lead_space(line[31]))
         }
+        if line[40] != "" {
+            patSex = "M"
+        } else if line[41] != "" {
+            patSex = "F"
+        }
         data := Patient{
             PatFirstName: rm_lead_space(patFullName[1]),
             PatLastName: patFullName[0],
@@ -56,6 +62,7 @@ func addPatient(v *Import, line []string, patClass string){
             PatSigOnFile: "1",
             PatState: rm_lead_space(line[23]),
             PatZip: rm_lead_space(line[26]),
+            PatSex: patSex,
             PatClassification: patClass,
             Patient_Insured: Patient_Insured{
                 InsAddress: rm_lead_space(line[21]),
@@ -68,6 +75,11 @@ func addPatient(v *Import, line []string, patClass string){
                 InsState: rm_lead_space(line[25]),
                 InsZip: rm_lead_space(line[29]),
                 PatInsRelationToInsured: "1",
+            },
+            Physician: Physician{
+                PhyName: rm_lead_space(line[74]),
+                PhyNPI: rm_lead_space(line[75]),
+                PhyType: "Rendering",
             },
             Claim: Claim{
                 ClaBillDate: rm_lead_space(line[222]),
