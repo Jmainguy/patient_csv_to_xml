@@ -75,6 +75,8 @@ func addPatient(v *Import, line []string, patClass string){
                     ClaInsAcceptAssignment: "1",
                     ClaInsPriorAuthorizationNumber: rm_lead_space(line[102]),
                 },
+                ClaDiagnosis1: rm_lead_space(line[88]),
+                ClaICDIndicator: "0",
                 Service_Line: Service_Line{
                     SrvCharges: formatedSrvCharges,
                     SrvFromDate: fullSrvFromDate,

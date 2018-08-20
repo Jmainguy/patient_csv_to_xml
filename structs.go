@@ -26,6 +26,8 @@ type Claim struct {
     XMLName xml.Name `xml:"Claim"`
     ClaBillDate string `xml:"ClaBillDate,omitempty"`
     Claim_Insured Claim_Insured `xml:"Claim_Insured,omitempty"`
+    ClaDiagnosis1 string `xml:"ClaDiagnosis1,omitempty"`
+    ClaICDIndicator string `xml:"ClaICDIndicator,omitempty"`
     Service_Line Service_Line `xml:"Service_Line,omitempty"`
 }
 
