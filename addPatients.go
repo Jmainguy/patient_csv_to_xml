@@ -18,6 +18,7 @@ func addPatient(v *Import, line []string, patClass string){
         fullPatPhoneNo := ""
         fullInsPhone := ""
         patSex := ""
+        phyType := ""
         if line[10] != "" {
             fullPatBirthDate = formatBirthDate(line[10],line[11],line[12])
         }
@@ -51,6 +52,9 @@ func addPatient(v *Import, line []string, patClass string){
         } else if line[41] != "" {
             patSex = "F"
         }
+        if line[74] != "" {
+            phyType = "Rendering"
+        }
         data := Patient{
             PatFirstName: rm_lead_space(patFullName[1]),
             PatLastName: patFullName[0],
@@ -79,7 +83,7 @@ func addPatient(v *Import, line []string, patClass string){
             Physician: Physician{
                 PhyName: rm_lead_space(line[74]),
                 PhyNPI: rm_lead_space(line[75]),
-                PhyType: "Rendering",
+                PhyType: phyType,
             },
             Claim: Claim{
                 ClaBillDate: rm_lead_space(line[222]),
