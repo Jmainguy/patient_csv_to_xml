@@ -67,7 +67,7 @@ type Patient struct {
     PatSex string `xml:"PatSex,omitempty"`
     PatClassification   string `xml:"PatClassification,omitempty"`
     Patient_Insured Patient_Insured `xml:"Patient_Insured,omitempty"`
-    Physician Physician `xml:"Physician"`
+    Physician *Physician
     Claim Claim `xml:"Claim"`
 }
 

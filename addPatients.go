@@ -19,6 +19,7 @@ func addPatient(v *Import, line []string, patClass string){
         fullInsPhone := ""
         patSex := ""
         phyType := ""
+        data := Patient{}
         if line[10] != "" {
             fullPatBirthDate = formatBirthDate(line[10],line[11],line[12])
         }
@@ -54,56 +55,102 @@ func addPatient(v *Import, line []string, patClass string){
         }
         if line[74] != "" {
             phyType = "Rendering"
-        }
-        data := Patient{
-            PatFirstName: rm_lead_space(patFullName[1]),
-            PatLastName: patFullName[0],
-            PatAccountNo: rm_lead_space(line[225]),
-            PatAddress: rm_lead_space(line[16]),
-            PatBirthDate: fullPatBirthDate,
-            PatCity: rm_lead_space(line[22]),
-            PatPhoneNo: fullPatPhoneNo,
-            PatSigOnFile: "1",
-            PatState: rm_lead_space(line[23]),
-            PatZip: rm_lead_space(line[26]),
-            PatSex: patSex,
-            PatClassification: patClass,
-            Patient_Insured: Patient_Insured{
-                InsAddress: rm_lead_space(line[21]),
-                InsBirthDate: fullInsBirthDate,
-                InsCity: rm_lead_space(line[24]),
-                InsFirstName: insFirstName,
-                InsLastName: insLastName,
-                InsIDNumber: rm_lead_space(line[8]),
-                InsPhone: fullInsPhone,
-                InsState: rm_lead_space(line[25]),
-                InsZip: rm_lead_space(line[29]),
-                PatInsRelationToInsured: "1",
-            },
-            Physician: Physician{
-                PhyName: rm_lead_space(line[74]),
-                PhyNPI: rm_lead_space(line[75]),
-                PhyType: phyType,
-            },
-            Claim: Claim{
-                ClaBillDate: rm_lead_space(line[222]),
-                Claim_Insured: Claim_Insured{
-                    ClaInsAcceptAssignment: "1",
-                    ClaInsPriorAuthorizationNumber: rm_lead_space(line[102]),
+            data = Patient{
+                PatFirstName: rm_lead_space(patFullName[1]),
+                PatLastName: patFullName[0],
+                PatAccountNo: rm_lead_space(line[225]),
+                PatAddress: rm_lead_space(line[16]),
+                PatBirthDate: fullPatBirthDate,
+                PatCity: rm_lead_space(line[22]),
+                PatPhoneNo: fullPatPhoneNo,
+                PatSigOnFile: "1",
+                PatState: rm_lead_space(line[23]),
+                PatZip: rm_lead_space(line[26]),
+                PatSex: patSex,
+                PatClassification: patClass,
+                Patient_Insured: Patient_Insured{
+                    InsAddress: rm_lead_space(line[21]),
+                    InsBirthDate: fullInsBirthDate,
+                    InsCity: rm_lead_space(line[24]),
+                    InsFirstName: insFirstName,
+                    InsLastName: insLastName,
+                    InsIDNumber: rm_lead_space(line[8]),
+                    InsPhone: fullInsPhone,
+                    InsState: rm_lead_space(line[25]),
+                    InsZip: rm_lead_space(line[29]),
+                    PatInsRelationToInsured: "1",
                 },
-                ClaDiagnosis1: rm_lead_space(line[88]),
-                ClaICDIndicator: "0",
-                Service_Line: Service_Line{
-                    SrvCharges: formatedSrvCharges,
-                    SrvFromDate: fullSrvFromDate,
-                    SrvPlace: rm_lead_space(line[112]),
-                    SrvEMG: rm_lead_space(line[113]),
-                    SrvProcedureCode: rm_lead_space(line[114]),
-                    SrvModifier1: rm_lead_space(line[115]),
-                    SrvToDate: fullSrvToDate,
-                    SrvUnits: rm_lead_space(line[120]),
+                Physician: &Physician{
+                    PhyName: rm_lead_space(line[74]),
+                    PhyNPI: rm_lead_space(line[75]),
+                    PhyType: phyType,
                 },
-            },
+                Claim: Claim{
+                    ClaBillDate: rm_lead_space(line[222]),
+                    Claim_Insured: Claim_Insured{
+                        ClaInsAcceptAssignment: "1",
+                        ClaInsPriorAuthorizationNumber: rm_lead_space(line[102]),
+                    },
+                    ClaDiagnosis1: rm_lead_space(line[88]),
+                    ClaICDIndicator: "0",
+                    Service_Line: Service_Line{
+                        SrvCharges: formatedSrvCharges,
+                        SrvFromDate: fullSrvFromDate,
+                        SrvPlace: rm_lead_space(line[112]),
+                        SrvEMG: rm_lead_space(line[113]),
+                        SrvProcedureCode: rm_lead_space(line[114]),
+                        SrvModifier1: rm_lead_space(line[115]),
+                        SrvToDate: fullSrvToDate,
+                        SrvUnits: rm_lead_space(line[120]),
+                    },
+                },
+            }
+        } else {
+            data = Patient{
+                PatFirstName: rm_lead_space(patFullName[1]),
+                PatLastName: patFullName[0],
+                PatAccountNo: rm_lead_space(line[225]),
+                PatAddress: rm_lead_space(line[16]),
+                PatBirthDate: fullPatBirthDate,
+                PatCity: rm_lead_space(line[22]),
+                PatPhoneNo: fullPatPhoneNo,
+                PatSigOnFile: "1",
+                PatState: rm_lead_space(line[23]),
+                PatZip: rm_lead_space(line[26]),
+                PatSex: patSex,
+                PatClassification: patClass,
+                Patient_Insured: Patient_Insured{
+                    InsAddress: rm_lead_space(line[21]),
+                    InsBirthDate: fullInsBirthDate,
+                    InsCity: rm_lead_space(line[24]),
+                    InsFirstName: insFirstName,
+                    InsLastName: insLastName,
+                    InsIDNumber: rm_lead_space(line[8]),
+                    InsPhone: fullInsPhone,
+                    InsState: rm_lead_space(line[25]),
+                    InsZip: rm_lead_space(line[29]),
+                    PatInsRelationToInsured: "1",
+                },
+                Claim: Claim{
+                    ClaBillDate: rm_lead_space(line[222]),
+                    Claim_Insured: Claim_Insured{
+                        ClaInsAcceptAssignment: "1",
+                        ClaInsPriorAuthorizationNumber: rm_lead_space(line[102]),
+                    },
+                    ClaDiagnosis1: rm_lead_space(line[88]),
+                    ClaICDIndicator: "0",
+                    Service_Line: Service_Line{
+                        SrvCharges: formatedSrvCharges,
+                        SrvFromDate: fullSrvFromDate,
+                        SrvPlace: rm_lead_space(line[112]),
+                        SrvEMG: rm_lead_space(line[113]),
+                        SrvProcedureCode: rm_lead_space(line[114]),
+                        SrvModifier1: rm_lead_space(line[115]),
+                        SrvToDate: fullSrvToDate,
+                        SrvUnits: rm_lead_space(line[120]),
+                    },
+                },
+            }
         }
         v.Patients = append(v.Patients, data)
 }
