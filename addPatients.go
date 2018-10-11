@@ -39,8 +39,8 @@ func addPatient(v *Import, line []string, patClass string){
                 insLastName = insFullName[0]
             }
         }
-        if line[118] != "" {
-            formatedSrvCharges = fmt.Sprintf("%s.%s", rm_lead_space(line[118]), rm_lead_space(line[119]))
+        if line[120] != "" {
+            formatedSrvCharges = fmt.Sprintf("%s.%s", rm_lead_space(line[120]), rm_lead_space(line[121]))
         }
         if line[27] != "" {
             fullPatPhoneNo = formatPhoneNumber(rm_lead_space(line[27]), rm_lead_space(line[28]))
@@ -101,7 +101,7 @@ func addPatient(v *Import, line []string, patClass string){
                         SrvProcedureCode: rm_lead_space(line[114]),
                         SrvModifier1: rm_lead_space(line[115]),
                         SrvToDate: fullSrvToDate,
-                        SrvUnits: rm_lead_space(line[120]),
+                        SrvUnits: rm_lead_space(line[122]),
                     },
                 },
             }
@@ -147,7 +147,7 @@ func addPatient(v *Import, line []string, patClass string){
                         SrvProcedureCode: rm_lead_space(line[114]),
                         SrvModifier1: rm_lead_space(line[115]),
                         SrvToDate: fullSrvToDate,
-                        SrvUnits: rm_lead_space(line[120]),
+                        SrvUnits: rm_lead_space(line[122]),
                     },
                 },
             }

@@ -11,7 +11,7 @@ func rm_lead_space(old_value string) (new_value string) {
 }
 
 func formatBirthDate(month, day, year string) (birthday string) {
-    birthday = fmt.Sprintf("%s%s/%s", rm_lead_space(month), rm_lead_space(day), rm_lead_space(year))
+    birthday = fmt.Sprintf("%s%s/19%s", rm_lead_space(month), rm_lead_space(day), rm_lead_space(year))
     return
 }
 

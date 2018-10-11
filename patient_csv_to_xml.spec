@@ -1,7 +1,7 @@
 %define _unpackaged_files_terminate_build 0
 %define  debug_package %{nil}
 Name:	patient_csv_to_xml
-Version: 0.4.3
+Version: 0.5
 Release: 1%{?dist}
 Summary: A golang http server to convert generations csv to ez claim xml
 
@@ -38,6 +38,9 @@ exit 0
 chown -R patient_csv_to_xml:patient_csv_to_xml /opt/patient_csv_to_xml
 
 %changelog
+* Thu Oct 11 2018 Jonathan Mainguy <jon@soh.re> - 0.5-1
+- moved price around, fixed birthdate
+
 * Wed Aug 22 2018 Jonathan Mainguy <jon@soh.re> - 0.4.3-1
 - Only add physican struct if line[74] exists
 
