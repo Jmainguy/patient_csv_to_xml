@@ -2,7 +2,7 @@
 %define  debug_package %{nil}
 Name:	patient_csv_to_xml
 Version: 0.5
-Release: 1%{?dist}
+Release: 2
 Summary: A golang http server to convert generations csv to ez claim xml
 
 License: GPLv2
@@ -38,6 +38,9 @@ exit 0
 chown -R patient_csv_to_xml:patient_csv_to_xml /opt/patient_csv_to_xml
 
 %changelog
+* Thu Oct 11 2018 Jonathan Mainguy <jon@soh.re> - 0.5-2
+- fixed service dates
+
 * Thu Oct 11 2018 Jonathan Mainguy <jon@soh.re> - 0.5-1
 - moved price around, fixed birthdate
 

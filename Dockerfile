@@ -1,6 +1,6 @@
 FROM centos:latest
 ADD Sohre.repo /etc/yum.repos.d/
-RUN yum install -y patient_csv_to_xml-0.5-1.el7.x86_64 && \
+RUN yum install -y patient_csv_to_xml-0.5-2.x86_64 && \
     yum clean all
 RUN chgrp -R 0 /opt/patient_csv_to_xml \
     && chmod -R g+rwX /opt/patient_csv_to_xml

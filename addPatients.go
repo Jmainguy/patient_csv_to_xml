@@ -24,10 +24,10 @@ func addPatient(v *Import, line []string, patClass string){
             fullPatBirthDate = formatBirthDate(line[10],line[11],line[12])
         }
         if line[106] != "" {
-            fullSrvFromDate = formatBirthDate(line[106],line[107],line[108])
+            fullSrvFromDate = formatDate(line[106],line[107],line[108])
         }
         if line[109] != "" {
-            fullSrvToDate = formatBirthDate(line[109],line[110],line[111])
+            fullSrvToDate = formatDate(line[109],line[110],line[111])
         }
         if line[37] != "" {
             fullInsBirthDate = formatBirthDate(line[37],line[38],line[39])
