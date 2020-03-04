@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func convertCsvToXml(f multipart.File, patClass string) (buffer *bytes.Buffer) {
+func convertCsvToXML(f multipart.File, patClass string) (buffer *bytes.Buffer) {
 	// Root of our xml doc
 	v := &Import{}
 
