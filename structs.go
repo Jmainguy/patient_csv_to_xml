@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 )
 
+// ServiceLine : A line of service
 type ServiceLine struct {
 	XMLName          xml.Name `xml:"Service_Line"`
 	SrvCharges       string   `xml:"SrvCharges,omitempty"`
@@ -16,12 +17,14 @@ type ServiceLine struct {
 	SrvUnits         string   `xml:"SrvUnits,omitempty"`
 }
 
+// ClaimInsured : I really am not sure
 type ClaimInsured struct {
 	XMLName                        xml.Name `xml:"Claim_Insured"`
 	ClaInsAcceptAssignment         string   `xml:"ClaInsAcceptAssignment,omitempty"`
 	ClaInsPriorAuthorizationNumber string   `xml:"ClaInsPriorAuthorizationNumber,omitempty"`
 }
 
+// Physician : A doctor basically
 type Physician struct {
 	XMLName xml.Name `xml:"Physician"`
 	PhyName string   `xml:"PhyName,omitempty"`
@@ -29,6 +32,7 @@ type Physician struct {
 	PhyType string   `xml:"PhyType,omitempty"`
 }
 
+// Claim : Pay me for this please
 type Claim struct {
 	XMLName         xml.Name     `xml:"Claim"`
 	ClaBillDate     string       `xml:"ClaBillDate,omitempty"`
@@ -38,6 +42,7 @@ type Claim struct {
 	ServiceLine     ServiceLine  `xml:"Service_Line,omitempty"`
 }
 
+// PatientInsured : Someone who is insured, and also a patient
 type PatientInsured struct {
 	XMLName                 xml.Name `xml:"Patient_Insured"`
 	InsAddress              string   `xml:"InsAddress,omitempty"`
@@ -52,6 +57,7 @@ type PatientInsured struct {
 	PatInsRelationToInsured string   `xml:"PatInsRelationToInsured,omitempty"`
 }
 
+// Patient : Someone who is a patient
 type Patient struct {
 	XMLName           xml.Name       `xml:"Patient"`
 	PatFirstName      string         `xml:"PatFirstName"`
@@ -71,6 +77,7 @@ type Patient struct {
 	Claim             Claim `xml:"Claim"`
 }
 
+// Import : Document to import into patients
 type Import struct {
 	XMLName  xml.Name  `xml:"Import"`
 	Patients []Patient `xml:"Patient"`
