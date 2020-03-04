@@ -1,48 +1,47 @@
 package main
 
 import (
-    "encoding/csv"
-    "net/http"
-    "mime/multipart"
-    "bytes"
-    "fmt"
-    "encoding/xml"
+	"bytes"
+	"encoding/csv"
+	"encoding/xml"
+	"fmt"
+	"mime/multipart"
+	"net/http"
 )
 
-func convertCsvToXml(f multipart.File, patClass string) (buffer *bytes.Buffer){
-    // Root of our xml doc
-    v := &Import{}
+func convertCsvToXml(f multipart.File, patClass string) (buffer *bytes.Buffer) {
+	// Root of our xml doc
+	v := &Import{}
 
-    // Read CSV File into a Variable
-    lines, err := csv.NewReader(f).ReadAll()
-    if err != nil {
-        panic(err)
-    }
+	// Read CSV File into a Variable
+	lines, err := csv.NewReader(f).ReadAll()
+	if err != nil {
+		panic(err)
+	}
 
-    // Loop through CSV lines & turn into object
-    for _, line := range lines {
-        addPatient(v, line, patClass)
-    }
+	// Loop through CSV lines & turn into object
+	for _, line := range lines {
+		addPatient(v, line, patClass)
+	}
 
-    var buf bytes.Buffer
-    enc := xml.NewEncoder(&buf)
-    enc.Indent("", "  ")
+	var buf bytes.Buffer
+	enc := xml.NewEncoder(&buf)
+	enc.Indent("", "  ")
 
-    err = enc.Encode(&v)
-    if err != nil {
-        fmt.Printf("error: %v\n", err)
-    }
+	err = enc.Encode(&v)
+	if err != nil {
+		fmt.Printf("error: %v\n", err)
+	}
 
-    f.Close()
-    buffer = &buf
-    return buffer
+	f.Close()
+	buffer = &buf
+	return buffer
 }
-
 
 func main() {
 
-    http.HandleFunc("/", upload)
+	http.HandleFunc("/", upload)
 
-    http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(":8000", nil)
 
 }
