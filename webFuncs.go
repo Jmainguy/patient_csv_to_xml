@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"io"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 )
@@ -15,17 +16,33 @@ func upload(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		crutime := time.Now().Unix()
 		h := md5.New()
-		io.WriteString(h, strconv.FormatInt(crutime, 10))
+		_, err := io.WriteString(h, strconv.FormatInt(crutime, 10))
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
 		token := fmt.Sprintf("%x", h.Sum(nil))
 
-		t, _ := template.ParseFiles("upload.gtpl")
-		t.Execute(w, token)
+		t, err := template.ParseFiles("upload.gtpl")
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		err = t.Execute(w, token)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
 	} else {
-		r.ParseMultipartForm(32 << 20)
+		err := r.ParseMultipartForm(32 << 20)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
 		file, _, err := r.FormFile("uploadfile")
 		if err != nil {
 			fmt.Println(err)
-			return
+			os.Exit(1)
 		}
 		patClass := r.PostFormValue("patClass")
 		fmt.Printf("PatClass is %s\n", patClass)
@@ -33,6 +50,11 @@ func upload(w http.ResponseWriter, r *http.Request) {
 
 		w.Header().Set("Content-Disposition", "attachment; filename=patient.xml")
 		w.Header().Set("Content-Type", r.Header.Get("Content-Type"))
-		io.Copy(w, buffer)
+		_, err = io.Copy(w, buffer)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+
 	}
 }

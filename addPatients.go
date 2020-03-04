@@ -29,7 +29,7 @@ func addPatient(v *Import, line []string, patClass string) {
 		fullSrvToDate = formatDate(line[110], line[111], line[112])
 	}
 	if line[38] != "" {
-		fullInsBirthDate = formatBirthDate(line[37], line[38], line[39])
+		fullInsBirthDate = formatBirthDate(line[38], line[39], line[40])
 	}
 	if line[16] != "" {
 		insFullName := strings.Split(rm_lead_space(line[16]), " ")
@@ -42,7 +42,7 @@ func addPatient(v *Import, line []string, patClass string) {
 		formatedSrvCharges = fmt.Sprintf("%s.%s", rm_lead_space(line[121]), rm_lead_space(line[122]))
 	}
 	if line[28] != "" {
-		fullPatPhoneNo = formatPhoneNumber(rm_lead_space(line[27]), rm_lead_space(line[28]))
+		fullPatPhoneNo = formatPhoneNumber(rm_lead_space(line[28]), rm_lead_space(line[29]))
 	}
 	if line[31] != "" {
 		fullInsPhone = formatPhoneNumber(rm_lead_space(line[31]), rm_lead_space(line[32]))

@@ -42,6 +42,9 @@ func main() {
 
 	http.HandleFunc("/", upload)
 
-	http.ListenAndServe(":8000", nil)
+	err := http.ListenAndServe(":8000", nil)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 }
